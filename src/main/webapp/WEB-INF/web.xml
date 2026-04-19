@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+  <display-name>Campus Events</display-name>
+
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>com.campusevents.filter.AuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>AuthServlet</servlet-name>
+    <servlet-class>com.campusevents.controller.AuthServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthServlet</servlet-name>
+    <url-pattern>/auth/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EventServlet</servlet-name>
+    <servlet-class>com.campusevents.controller.EventServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EventServlet</servlet-name>
+    <url-pattern>/events/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReservationServlet</servlet-name>
+    <servlet-class>com.campusevents.controller.ReservationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservationServlet</servlet-name>
+    <url-pattern>/reservations/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RatingServlet</servlet-name>
+    <servlet-class>com.campusevents.controller.RatingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RatingServlet</servlet-name>
+    <url-pattern>/ratings/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>OrganizerServlet</servlet-name>
+    <servlet-class>com.campusevents.controller.OrganizerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrganizerServlet</servlet-name>
+    <url-pattern>/organizer/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AttendanceServlet</servlet-name>
+    <servlet-class>com.campusevents.controller.AttendanceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AttendanceServlet</servlet-name>
+    <url-pattern>/organizer/attendance</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>com.campusevents.controller.AdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/admin/*</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <session-config>
+    <session-timeout>60</session-timeout>
+  </session-config>
+</web-app>
