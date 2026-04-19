@@ -15,20 +15,26 @@
           <tr>
             <td>${ev.title}</td>
             <td>${ev.organizerName}</td>
-            <td><fmt:formatDate value="${ev.dateTime}" pattern="dd MMM yyyy" type="both"/></td>
+            <td><fmt:formatDate value="${ev.dateTimeAsDate}" pattern="dd MMM yyyy" type="both"/></td>
             <td>
               <span class="badge ${ev.status == 'open' ? 'bg-success' : 'bg-secondary'}">${ev.status}</span>
             </td>
             <td>
               <form method="post" action="${pageContext.request.contextPath}/admin/events/status" style="display:inline">
                 <input type="hidden" name="id" value="${ev.id}">
-                <select name="status" class="form-select form-select-sm d-inline w-auto">
-                  <option value="open"      ${ev.status=='open'      ? 'selected':''}>open</option>
-                  <option value="closed"    ${ev.status=='closed'    ? 'selected':''}>closed</option>
-                  <option value="completed" ${ev.status=='completed' ? 'selected':''}>completed</option>
-                  <option value="expired"   ${ev.status=='expired'   ? 'selected':''}>expired</option>
-                </select>
-                <button class="btn btn-sm btn-outline-secondary">Set</button>
+                <c:choose>
+                  <c:when test="${ev.status == 'expired'}">
+                    <span class="text-muted small">expired (auto)</span>
+                  </c:when>
+                  <c:otherwise>
+                    <select name="status" class="form-select form-select-sm d-inline w-auto">
+                      <option value="open"      ${ev.status=='open'      ? 'selected':''}>open</option>
+                      <option value="closed"    ${ev.status=='closed'    ? 'selected':''}>closed</option>
+                      <option value="completed" ${ev.status=='completed' ? 'selected':''}>completed</option>
+                    </select>
+                    <button class="btn btn-sm btn-outline-secondary">Set</button>
+                  </c:otherwise>
+                </c:choose>
               </form>
               <form method="post" action="${pageContext.request.contextPath}/admin/events/delete"
                     style="display:inline" onsubmit="return confirm('Delete event?')">

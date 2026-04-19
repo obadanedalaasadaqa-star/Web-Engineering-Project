@@ -38,8 +38,8 @@
 
             <div id="studentFields">
               <div class="mb-3">
-                <label class="form-label">Major (optional)</label>
-                <input type="text" name="major" class="form-control">
+                <label class="form-label">University Number</label>
+                <input type="text" name="uni_number" class="form-control" placeholder="e.g. 20210012345">
               </div>
             </div>
 

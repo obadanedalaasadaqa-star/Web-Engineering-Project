@@ -21,6 +21,7 @@ public class AdminServlet extends HttpServlet {
         if (path == null) path = "/dashboard";
 
         try {
+            eventDAO.expireOverdueEvents();
             switch (path) {
                 case "/dashboard":
                     req.setAttribute("userCount",  userDAO.findAll().size());
@@ -54,26 +55,37 @@ public class AdminServlet extends HttpServlet {
 
         try {
             switch (path) {
-                case "/users/block":
-                    userDAO.updateStatus(req.getParameter("id"), "blocked");
+                case "/users/block": {
+                    String targetId = req.getParameter("id");
+                    String selfId   = (String) req.getSession().getAttribute("userId");
+                    if (!targetId.equals(selfId))
+                        userDAO.updateStatus(targetId, "blocked");
                     resp.sendRedirect(req.getContextPath() + "/admin/users");
                     break;
+                }
                 case "/users/unblock":
                     userDAO.updateStatus(req.getParameter("id"), "active");
                     resp.sendRedirect(req.getContextPath() + "/admin/users");
                     break;
-                case "/users/delete":
-                    userDAO.delete(req.getParameter("id"));
+                case "/users/delete": {
+                    String targetId = req.getParameter("id");
+                    String selfId   = (String) req.getSession().getAttribute("userId");
+                    if (!targetId.equals(selfId))
+                        userDAO.delete(targetId);
                     resp.sendRedirect(req.getContextPath() + "/admin/users");
                     break;
+                }
                 case "/events/delete":
                     eventDAO.delete(req.getParameter("id"));
                     resp.sendRedirect(req.getContextPath() + "/admin/events");
                     break;
-                case "/events/status":
-                    eventDAO.updateStatus(req.getParameter("id"), req.getParameter("status"));
+                case "/events/status": {
+                    String newStatus = req.getParameter("status");
+                    if (!"expired".equals(newStatus))
+                        eventDAO.updateStatus(req.getParameter("id"), newStatus);
                     resp.sendRedirect(req.getContextPath() + "/admin/events");
                     break;
+                }
                 case "/categories/create":
                     categoryDAO.createCategory(req.getParameter("name"));
                     resp.sendRedirect(req.getContextPath() + "/admin/categories");

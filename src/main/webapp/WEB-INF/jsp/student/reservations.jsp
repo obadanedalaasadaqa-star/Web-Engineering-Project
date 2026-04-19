@@ -30,7 +30,7 @@
                   </a>
                 </td>
                 <td>
-                  <fmt:formatDate value="${res.event.dateTime}" pattern="dd MMM yyyy HH:mm" type="both"/>
+                  <fmt:formatDate value="${res.event.dateTimeAsDate}" pattern="dd MMM yyyy HH:mm" type="both"/>
                 </td>
                 <td>${res.event.location}</td>
                 <td>

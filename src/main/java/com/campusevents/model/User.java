@@ -10,7 +10,7 @@ public class User {
     private String role;
     private String faculty;
     private String department;
-    private String major;
+    private String uniNumber;
     private int admissionYear;
     private String status;
     private OffsetDateTime createdAt;
@@ -31,8 +31,8 @@ public class User {
     public void setFaculty(String faculty) { this.faculty = faculty; }
     public String getDepartment() { return department; }
     public void setDepartment(String department) { this.department = department; }
-    public String getMajor() { return major; }
-    public void setMajor(String major) { this.major = major; }
+    public String getUniNumber() { return uniNumber; }
+    public void setUniNumber(String uniNumber) { this.uniNumber = uniNumber; }
     public int getAdmissionYear() { return admissionYear; }
     public void setAdmissionYear(int admissionYear) { this.admissionYear = admissionYear; }
     public String getStatus() { return status; }

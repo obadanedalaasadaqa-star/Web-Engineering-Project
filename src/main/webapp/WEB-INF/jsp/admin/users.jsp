@@ -19,23 +19,30 @@
               <span class="badge ${u.status == 'active' ? 'bg-success' : 'bg-danger'}">${u.status}</span>
             </td>
             <td>
-              <c:if test="${u.status == 'active'}">
-                <form method="post" action="${pageContext.request.contextPath}/admin/users/block" style="display:inline">
-                  <input type="hidden" name="id" value="${u.id}">
-                  <button class="btn btn-sm btn-warning">Block</button>
-                </form>
-              </c:if>
-              <c:if test="${u.status == 'blocked'}">
-                <form method="post" action="${pageContext.request.contextPath}/admin/users/unblock" style="display:inline">
-                  <input type="hidden" name="id" value="${u.id}">
-                  <button class="btn btn-sm btn-success">Unblock</button>
-                </form>
-              </c:if>
-              <form method="post" action="${pageContext.request.contextPath}/admin/users/delete"
-                    style="display:inline" onsubmit="return confirm('Delete user ${u.name}?')">
-                <input type="hidden" name="id" value="${u.id}">
-                <button class="btn btn-sm btn-danger">Delete</button>
-              </form>
+              <c:choose>
+                <c:when test="${u.id == sessionScope.userId}">
+                  <span class="text-muted small">—</span>
+                </c:when>
+                <c:otherwise>
+                  <c:if test="${u.status == 'active'}">
+                    <form method="post" action="${pageContext.request.contextPath}/admin/users/block" style="display:inline">
+                      <input type="hidden" name="id" value="${u.id}">
+                      <button class="btn btn-sm btn-warning">Block</button>
+                    </form>
+                  </c:if>
+                  <c:if test="${u.status == 'blocked'}">
+                    <form method="post" action="${pageContext.request.contextPath}/admin/users/unblock" style="display:inline">
+                      <input type="hidden" name="id" value="${u.id}">
+                      <button class="btn btn-sm btn-success">Unblock</button>
+                    </form>
+                  </c:if>
+                  <form method="post" action="${pageContext.request.contextPath}/admin/users/delete"
+                        style="display:inline" onsubmit="return confirm('Delete user ${u.name}?')">
+                    <input type="hidden" name="id" value="${u.id}">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                  </form>
+                </c:otherwise>
+              </c:choose>
             </td>
           </tr>
         </c:forEach>

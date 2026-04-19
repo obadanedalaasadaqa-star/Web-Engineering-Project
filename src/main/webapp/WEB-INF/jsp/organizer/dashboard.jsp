@@ -28,7 +28,7 @@
               <tr>
                 <td>${ev.title}</td>
                 <td><span class="badge bg-secondary">${ev.type}</span></td>
-                <td><fmt:formatDate value="${ev.dateTime}" pattern="dd MMM yyyy" type="both"/></td>
+                <td><fmt:formatDate value="${ev.dateTimeAsDate}" pattern="dd MMM yyyy" type="both"/></td>
                 <td>${ev.seatsRemaining}/${ev.capacity}</td>
                 <td>
                   <span class="badge ${ev.status == 'open' ? 'bg-success' : 'bg-warning text-dark'}">

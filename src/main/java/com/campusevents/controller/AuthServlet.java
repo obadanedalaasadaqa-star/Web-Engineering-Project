@@ -110,7 +110,7 @@ public class AuthServlet extends HttpServlet {
         String role       = req.getParameter("role");
         String faculty    = req.getParameter("faculty");
         String department = req.getParameter("department");
-        String major      = req.getParameter("major");
+        String uniNumber  = req.getParameter("uni_number");
         String admYearStr = req.getParameter("admission_year");
 
         try {
@@ -145,7 +145,7 @@ public class AuthServlet extends HttpServlet {
             user.setRole(role);
             user.setFaculty("organizer".equals(role) ? faculty : null);
             user.setDepartment("organizer".equals(role) ? department : null);
-            user.setMajor("student".equals(role) ? major : null);
+            user.setUniNumber("student".equals(role) ? uniNumber : null);
             user.setAdmissionYear(Integer.parseInt(admYearStr));
             userDAO.create(user);
 

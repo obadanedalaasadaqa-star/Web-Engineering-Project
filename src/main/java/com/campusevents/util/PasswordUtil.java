@@ -9,6 +9,11 @@ public class PasswordUtil {
     }
 
     public static boolean verify(String plainPassword, String hashedPassword) {
-        return BCrypt.checkpw(plainPassword, hashedPassword);
+        if (hashedPassword == null) return false;
+        // jBCrypt 0.4 only handles $2a$; normalize $2b$ (functionally identical)
+        String normalized = hashedPassword.startsWith("$2b$")
+            ? "$2a$" + hashedPassword.substring(4)
+            : hashedPassword;
+        return BCrypt.checkpw(plainPassword, normalized);
     }
 }

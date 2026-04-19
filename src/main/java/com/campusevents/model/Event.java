@@ -1,6 +1,7 @@
 package com.campusevents.model;
 
 import java.time.OffsetDateTime;
+import java.util.Date;
 
 public class Event {
     private String id;
@@ -57,4 +58,12 @@ public class Event {
     public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
     public double getAvgRating() { return avgRating; }
     public void setAvgRating(double avgRating) { this.avgRating = avgRating; }
+    public Date getDateTimeAsDate() {
+        if (dateTime == null) return null;
+        return Date.from(dateTime.toInstant());
+    }
+    public Date getCreatedAtAsDate() {
+        if (createdAt == null) return null;
+        return Date.from(createdAt.toInstant());
+    }
 }

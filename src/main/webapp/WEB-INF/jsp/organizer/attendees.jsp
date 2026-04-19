@@ -9,17 +9,18 @@
   <div class="table-responsive">
     <table class="table table-bordered align-middle">
       <thead class="table-light">
-        <tr><th>Name</th><th>Email</th><th>Attendance</th><th>Mark</th></tr>
+        <tr><th>Name</th><th>Uni Number</th><th>Email</th><th>Attendance</th><th>Mark</th></tr>
       </thead>
       <tbody>
         <c:choose>
           <c:when test="${empty reservations}">
-            <tr><td colspan="4" class="text-center text-muted">No reservations yet.</td></tr>
+            <tr><td colspan="5" class="text-center text-muted">No reservations yet.</td></tr>
           </c:when>
           <c:otherwise>
             <c:forEach var="res" items="${reservations}">
               <tr>
                 <td>${res.user.name}</td>
+                <td>${not empty res.user.uniNumber ? res.user.uniNumber : '—'}</td>
                 <td>${res.user.email}</td>
                 <td>
                   <span class="badge ${res.attendance == 'present' ? 'bg-success' : res.attendance == 'absent' ? 'bg-danger' : 'bg-secondary'}">

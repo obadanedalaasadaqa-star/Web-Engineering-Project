@@ -38,7 +38,7 @@
         <div class="mb-3">
           <label class="form-label">Date &amp; Time</label>
           <input type="datetime-local" name="date_time" class="form-control" required
-                 value="<fmt:formatDate value='${event.dateTime}' pattern='yyyy-MM-dd HH:mm' type='both'/>">
+                 value="<fmt:formatDate value='${event.dateTimeAsDate}' pattern='yyyy-MM-dd HH:mm' type='both'/>">
         </div>
         <div class="mb-3">
           <label class="form-label">Location</label>

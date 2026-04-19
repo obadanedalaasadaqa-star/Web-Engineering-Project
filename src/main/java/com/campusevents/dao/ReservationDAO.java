@@ -44,7 +44,7 @@ public class ReservationDAO {
 
     public List<Reservation> findByEvent(String eventId) throws SQLException {
         List<Reservation> list = new ArrayList<>();
-        String sql = "SELECT r.*, u.name AS user_name, u.email AS user_email " +
+        String sql = "SELECT r.*, u.name AS user_name, u.email AS user_email, u.uni_number AS user_uni_number " +
                      "FROM reservations r " +
                      "JOIN users u ON r.user_id = u.id " +
                      "WHERE r.event_id = ? AND r.status = 'reserved' " +
@@ -59,6 +59,7 @@ public class ReservationDAO {
                     u.setId(rs.getString("user_id"));
                     u.setName(rs.getString("user_name"));
                     u.setEmail(rs.getString("user_email"));
+                    u.setUniNumber(rs.getString("user_uni_number"));
                     res.setUser(u);
                     list.add(res);
                 }

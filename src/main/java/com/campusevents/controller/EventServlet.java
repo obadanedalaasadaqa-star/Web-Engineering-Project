@@ -38,6 +38,7 @@ public class EventServlet extends HttpServlet {
     private void showEventList(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         try {
+            eventDAO.expireOverdueEvents();
             List<Event> all = eventDAO.findAll();
 
             Map<String, String> params = new HashMap<>();

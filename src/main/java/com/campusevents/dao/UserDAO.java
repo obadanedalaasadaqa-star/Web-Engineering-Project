@@ -57,7 +57,7 @@ public class UserDAO {
     }
 
     public void create(User user) throws SQLException {
-        String sql = "INSERT INTO users (name, email, password_hash, role, faculty, department, major, admission_year) " +
+        String sql = "INSERT INTO users (name, email, password_hash, role, faculty, department, uni_number, admission_year) " +
                      "VALUES (?, ?, ?, ?::user_role, ?, ?, ?, ?)";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -67,7 +67,7 @@ public class UserDAO {
             ps.setString(4, user.getRole());
             ps.setString(5, user.getFaculty());
             ps.setString(6, user.getDepartment());
-            ps.setString(7, user.getMajor());
+            ps.setString(7, user.getUniNumber());
             ps.setInt(8, user.getAdmissionYear());
             ps.executeUpdate();
         }
@@ -101,7 +101,7 @@ public class UserDAO {
         u.setRole(rs.getString("role"));
         u.setFaculty(rs.getString("faculty"));
         u.setDepartment(rs.getString("department"));
-        u.setMajor(rs.getString("major"));
+        u.setUniNumber(rs.getString("uni_number"));
         u.setAdmissionYear(rs.getInt("admission_year"));
         u.setStatus(rs.getString("status"));
         Timestamp ts = rs.getTimestamp("created_at");

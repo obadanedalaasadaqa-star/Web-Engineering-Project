@@ -121,6 +121,15 @@ public class EventDAO {
         }
     }
 
+    public void expireOverdueEvents() throws SQLException {
+        String sql = "UPDATE events SET status = 'expired'::event_status " +
+                     "WHERE date_time < NOW() AND status IN ('open', 'closed')";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.executeUpdate();
+        }
+    }
+
     public void updateStatus(String eventId, String status) throws SQLException {
         String sql = "UPDATE events SET status = ?::event_status WHERE id = ?";
         try (Connection con = DBConnection.getConnection();

@@ -12,7 +12,7 @@
       </c:if>
       <h2>${event.title}</h2>
       <p class="text-muted">
-        <fmt:formatDate value="${event.dateTime}" pattern="dd MMMM yyyy 'at' HH:mm" type="both"/>
+        <fmt:formatDate value="${event.dateTimeAsDate}" pattern="dd MMMM yyyy 'at' HH:mm" type="both"/>
         &nbsp;|&nbsp; ${event.location}
       </p>
       <p>${event.description}</p>

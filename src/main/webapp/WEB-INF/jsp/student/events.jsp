@@ -58,7 +58,7 @@
                 <span class="badge bg-secondary mb-2">${ev.type}</span>
                 <h5 class="card-title">${ev.title}</h5>
                 <p class="card-text text-muted small">
-                  <fmt:formatDate value="${ev.dateTime}" pattern="dd MMM yyyy HH:mm" type="both"/>
+                  <fmt:formatDate value="${ev.dateTimeAsDate}" pattern="dd MMM yyyy HH:mm" type="both"/>
                 </p>
                 <p class="card-text small">${ev.location}</p>
                 <p class="card-text small">Seats: <strong>${ev.seatsRemaining}</strong> / ${ev.capacity}</p>
